@@ -33,16 +33,19 @@ searchForm.addEventListener('submit', async (event) => {
     }
 )
 
-loadBtn.addEventListener('click', onLoaderClick)
+loadBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    onLoaderClick()
+})
 
-function onLoaderClick() {
+async function onLoaderClick() {
   currentPage += 1;
     try {
-        mainCreating()
+        await mainCreating()
+        
     } catch (error) {
         console.log(error)
     } 
-    
     checkBtnStatus();
     myScroll()
 }
@@ -92,11 +95,9 @@ async function mainCreating() {
         }
 }
 function myScroll() {
-    const height = gallery.firstChild.getBoundingClientRect().height;
-    const currentScrollY = window.scrollY || window.pageYOffset; // отримуємо поточне вертикальне положення прокрутки
-
+    const height = gallery.firstChild.getBoundingClientRect().height; 
     scrollBy({
-        top: currentScrollY + height,
-        behavior: 'smooth',
-    });
+    top: height * 2,
+    behavior: 'smooth',
+  });
 }
