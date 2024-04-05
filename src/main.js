@@ -24,12 +24,11 @@ searchForm.addEventListener('submit', async (event) => {
     gallery.innerHTML = ""
     query = searchInput.value
     try {
-        mainCreating()
-        
+        await mainCreating()
+        checkBtnStatus();
     } catch (error) {
         console.log(error)
     }
-    
     searchInput.value = ''
     }
 )
