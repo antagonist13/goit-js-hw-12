@@ -25,7 +25,6 @@ searchForm.addEventListener('submit', async (event) => {
     query = searchInput.value
     try {
         await mainCreating()
-        checkBtnStatus();
     } catch (error) {
         console.log(error)
     }
@@ -89,9 +88,9 @@ async function mainCreating() {
         } else {
     gallery.insertAdjacentHTML('beforeend', imgTemplate(imgList))
     loadingIndicator.style.display = 'none'
-        showLoader();
     let lightbox = new SimpleLightbox('.gallery li a', { captionsData: 'alt', captionsDelay: 250 });
             lightbox.refresh()
+            checkBtnStatus();
         }
 }
 function myScroll() {
