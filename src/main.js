@@ -24,15 +24,17 @@ searchForm.addEventListener('submit', async (event) => {
     query = searchInput.value
     try {
         mainCreating()
+        
     } catch (error) {
         console.log(error)
     }
-    showLoader();
+    
     searchInput.value = ''
     }
 )
 
 loadBtn.addEventListener('click', onLoaderClick)
+
 function onLoaderClick() {
   currentPage += 1;
     try {
@@ -40,8 +42,9 @@ function onLoaderClick() {
     } catch (error) {
         console.log(error)
     } 
-//   myScroll();
-  checkBtnStatus();
+    
+    checkBtnStatus();
+    myScroll()
 }
 
 async function imgCreating() {
@@ -79,10 +82,21 @@ async function mainCreating() {
             message: `Sorry, there are no images matching your search query. Please try again!`,
             position: 'topRight'
             });
-        }
+            loadingIndicator.style.display = 'none'
+        } else {
     gallery.insertAdjacentHTML('beforeend', imgTemplate(imgList))
     loadingIndicator.style.display = 'none'
-
+        showLoader();
     let lightbox = new SimpleLightbox('.gallery li a', { captionsData: 'alt', captionsDelay: 250 });
-        lightbox.refresh()
+            lightbox.refresh()
+        }
+}
+function myScroll() {
+    const height = gallery.firstChild.getBoundingClientRect().height;
+    const currentScrollY = window.scrollY || window.pageYOffset; // отримуємо поточне вертикальне положення прокрутки
+
+    scrollBy({
+        top: currentScrollY + height,
+        behavior: 'smooth',
+    });
 }
