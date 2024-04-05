@@ -61,7 +61,11 @@ function hideLoader() {
 }
 function checkBtnStatus() {
   if (currentPage >= maxPage) {
-    hideLoader();
+      hideLoader();
+      iziToast.info({
+            message: `We're sorry, but you've reached the end of search results.`,
+            position: 'topRight'
+});
   } else {
     showLoader();
   }
