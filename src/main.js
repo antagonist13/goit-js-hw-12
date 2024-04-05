@@ -14,11 +14,12 @@ const loadingIndicator = document.querySelector('.loader');
 const loadBtn = document.querySelector('.load-btn')
 
 let query;
-let currentPage = 1;
+let currentPage
 const pageSize = 15
 let maxPage = 1
 
 searchForm.addEventListener('submit', async (event) => {
+    currentPage = 1
     event.preventDefault()
     gallery.innerHTML = ""
     query = searchInput.value
@@ -97,7 +98,7 @@ async function mainCreating() {
 function myScroll() {
     const height = gallery.firstChild.getBoundingClientRect().height; 
     scrollBy({
-    top: height * 2,
+    top: height * 2 ,
     behavior: 'smooth',
   });
 }
